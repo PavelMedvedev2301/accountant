@@ -11,8 +11,6 @@ namespace Motify.Server.Api;
 
 public static class ApiService
 {
-    private const string API_KEY = "tbx-dev-key-12345";  // TODO: Move to config/env
-
     public static void MapApiEndpoints(WebApplication app)
     {
         var csvService = new CsvService();
@@ -157,6 +155,11 @@ public static class ApiService
 
     private static bool ValidateApiKey(HttpContext context)
     {
+        // Get API key from environment or configuration
+        var expectedApiKey = Environment.GetEnvironmentVariable("API_KEY") 
+                          ?? context.RequestServices.GetService<IConfiguration>()?["ApiKey"]
+                          ?? "motify-dev-key-12345"; // Fallback for development only
+
         if (!context.Request.Headers.TryGetValue("Authorization", out var authHeader))
         {
             return false;
@@ -169,7 +172,7 @@ public static class ApiService
         }
 
         var key = header.Substring(7);
-        return key == API_KEY;
+        return key == expectedApiKey;
     }
 }
 
