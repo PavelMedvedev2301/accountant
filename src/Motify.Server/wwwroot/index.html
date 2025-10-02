@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trial Balance Classifier</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>⚽ Trial Balance Classifier</h1>
+        <p>Powered by TBX Engine</p>
+    </header>
+
+    <main class="container">
+        <!-- Upload Form -->
+        <section id="uploadSection" class="card">
+            <h2>Upload Trial Balance Files</h2>
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label for="clientId">Client ID *</label>
+                    <input type="text" id="clientId" name="client_id" placeholder="e.g., ACME" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prevFile">Previous TB (CSV) *</label>
+                        <input type="file" id="prevFile" name="prev" accept=".csv" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currFile">Current TB (CSV) *</label>
+                        <input type="file" id="currFile" name="curr" accept=".csv" required>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="debugMode" name="debug">
+                        <span>Debug mode (show full evidence)</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span id="btnText">🚀 Run Classification</span>
+                    <span id="btnLoader" class="loader" style="display: none;"></span>
+                </button>
+            </form>
+        </section>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="card" style="display: none;">
+            <div class="results-header">
+                <h2>Classification Results</h2>
+                <div class="stats" id="stats"></div>
+            </div>
+
+            <div class="results-actions">
+                <button class="btn-secondary" onclick="applyChanges()">💾 Apply Changes</button>
+                <button class="btn-secondary" onclick="downloadCSV()">⬇️ Download CSV</button>
+                <button class="btn-secondary" onclick="viewMemory()">📚 View Memory</button>
+            </div>
+
+            <div class="table-container">
+                <table id="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Account Name</th>
+                            <th>Parent</th>
+                            <th>Status</th>
+                            <th>Category</th>
+                            <th>Confidence</th>
+                            <th>Review</th>
+                            <th>Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Memory Viewer -->
+        <section id="memorySection" class="card" style="display: none;">
+            <div class="results-header">
+                <h2>Memory Mappings</h2>
+                <button class="btn-secondary" onclick="closeMemory()">✖ Close</button>
+            </div>
+
+            <div class="table-container">
+                <table id="memoryTable">
+                    <thead>
+                        <tr>
+                            <th>Name (Normalized)</th>
+                            <th>Parent (Normalized)</th>
+                            <th>Category</th>
+                            <th>Source</th>
+                            <th>Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody id="memoryBody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Trial Balance Classifier | Barcelona Theme</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

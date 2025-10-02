@@ -1,0 +1,98 @@
+# Classification Configuration
+
+thresholds:
+  renumberedSimilarity: 0.92
+  memoryExactMatch: 1.0
+  keywordMatch: 0.85
+  parentMatch: 0.80
+  fuzzyMatch: 0.75
+  needsReviewBelow: 70
+
+weights:
+  memory: 0.50
+  keyword: 0.25
+  parent: 0.15
+  fuzzy: 0.10
+
+keywords:
+  "Assets>Cash":
+    - cash
+    - bank
+    - checking
+    - savings
+    - petty
+  "Assets>Receivables":
+    - receivable
+    - debtors
+    - ar
+    - trade receivable
+  "Assets>Inventory":
+    - inventory
+    - stock
+    - goods
+    - raw material
+    - finished goods
+  "Assets>Fixed Assets":
+    - equipment
+    - furniture
+    - building
+    - vehicle
+    - computer
+    - machinery
+    - land
+    - property
+  "Liabilities>Payables":
+    - payable
+    - creditors
+    - ap
+    - trade payable
+  "Liabilities>Loans":
+    - loan
+    - borrowing
+    - debt
+    - mortgage
+  "Equity>Capital":
+    - capital
+    - equity
+    - retained earning
+    - share
+  "Revenue>Sales":
+    - revenue
+    - sales
+    - income
+    - turnover
+  "Expenses>Cost of Sales":
+    - cost of goods
+    - cost of sales
+    - cogs
+    - purchases
+  "Expenses>Operating":
+    - salary
+    - wage
+    - rent
+    - utilities
+    - insurance
+    - depreciation
+    - amortization
+    - marketing
+    - advertising
+    - office supplies
+    - travel
+
+ontology:
+  "1": "Assets"
+  "10": "Assets>Current Assets"
+  "11": "Assets>Current Assets>Cash"
+  "12": "Assets>Current Assets>Receivables"
+  "13": "Assets>Current Assets>Inventory"
+  "14": "Assets>Fixed Assets"
+  "2": "Liabilities"
+  "20": "Liabilities>Current Liabilities"
+  "21": "Liabilities>Current Liabilities>Payables"
+  "22": "Liabilities>Long-term Liabilities"
+  "3": "Equity"
+  "4": "Revenue"
+  "5": "Expenses"
+  "50": "Expenses>Cost of Sales"
+  "51": "Expenses>Operating Expenses"
+

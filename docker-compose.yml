@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  motify:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: motify-classifier
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - PORT=5000
+      - TZ=UTC
+      - API_KEY=${API_KEY:-motify-dev-key-12345}
+    restart: unless-stopped
+    networks:
+      - motify-network
+
+networks:
+  motify-network:
+    driver: bridge
